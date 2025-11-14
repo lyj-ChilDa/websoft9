@@ -206,9 +206,8 @@ scan_filesystem() {
     
     log "Starting filesystem vulnerability scan"
     
-    # 定义要跳过的目录和文件
-    local skip_dirs="**/.rustup/**,**/hostedtoolcache/**,**/.cache/**,**/tmp/**,**/var/cache/**,**/usr/share/doc/**"
-    local skip_files="**/*.html,**/*.pdf,**/*.doc,**/*.docx"
+    local skip_dirs="**/.rustup/**,**/hostedtoolcache/**,**/.cache/**,**/tmp/**,**/var/cache/**,**/usr/share/doc/**,**/var/lib/gems/**,**/opt/hostedtoolcache/**,**/home/runner/**,**/home/packer/**,**/usr/local/lib/android/**,**/usr/share/doc/**,**/usr/share/man/**,**/var/lib/dpkg/**,**/var/lib/apt/**,**/var/cache/apt/**,**/snap/**,**/opt/microsoft/**,**/opt/google/**,**/opt/yarn/**,**/opt/pipx/**,**/node_modules/**"
+    local skip_files="**/*.html,**/*.pdf,**/*.doc,**/*.docx,**/*.lock,**/*.gem,**/*.jar,**/*.war,**/*.zip,**/*.tar,**/*.gz,**/*.7z,**/*.iso,**/*.img,**/*.bin"
     
     # Scan the root filesystem
     if trivy fs \
