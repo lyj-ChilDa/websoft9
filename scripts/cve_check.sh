@@ -215,7 +215,7 @@ scan_filesystem() {
         --timeout 600s \
         --skip-dirs "${skip_dirs}" \
         --skip-files "${skip_files}" \
-        --skip-files-over 10MB \
+        --offline-scan \
         --format json \
         --output "${fs_report}" /; then
         print_status "${GREEN}" "Filesystem scan completed"
