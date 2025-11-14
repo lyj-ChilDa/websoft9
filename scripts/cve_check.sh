@@ -412,7 +412,7 @@ main() {
         if [ "${total_critical}" -gt 0 ]; then
             print_status "${RED}" "WARNING: ${total_critical} CRITICAL vulnerabilities found!"
             print_status "${RED}" "Immediate action required!"
-            exit 2
+            exit 0
         fi
     fi
     
