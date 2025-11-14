@@ -206,16 +206,17 @@ scan_filesystem() {
     
     log "Starting filesystem vulnerability scan"
     
-    local scan_dirs="/bin /sbin /usr/bin /usr/sbin /lib /usr/lib /etc /boot /var/lib/dpkg"
-    
+    local skip_dirs="**/.rustup/**,**/hostedtoolcache/**,**/.cache/**,**/tmp/**,**/var/cache/**,**/usr/share/doc/**"
+    local skip_files="**/*.html,**/*.pdf,**/*.doc,**/*.docx"
+
     # Scan the root filesystem
     if trivy fs \
-        --timeout 600s \
-        --scanners vuln \
+        --timeout 3600s \
+        --skip-dirs "${skip_dirs}" \
+        --skip-files "${skip_files}" \
         --offline-scan \
         --format json \
-        --output "${fs_report}" \
-        ${scan_dirs}; then
+        --output "${fs_report}" /; then
         print_status "${GREEN}" "Filesystem scan completed"
         
         # Parse and display critical vulnerabilities
