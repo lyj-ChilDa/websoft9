@@ -206,8 +206,18 @@ scan_filesystem() {
     
     log "Starting filesystem vulnerability scan"
     
+    # 定义要跳过的目录和文件
+    local skip_dirs="**/.rustup/**,**/hostedtoolcache/**,**/.cache/**,**/tmp/**,**/var/cache/**,**/usr/share/doc/**"
+    local skip_files="**/*.html,**/*.pdf,**/*.doc,**/*.docx"
+    
     # Scan the root filesystem
-    if trivy fs --format json --output "${fs_report}" /; then
+    if trivy fs \
+        --timeout 600s \
+        --skip-dirs "${skip_dirs}" \
+        --skip-files "${skip_files}" \
+        --skip-files-over 10MB \
+        --format json \
+        --output "${fs_report}" /; then
         print_status "${GREEN}" "Filesystem scan completed"
         
         # Parse and display critical vulnerabilities
