@@ -29,10 +29,10 @@ jobs:
         echo "Release Tag: ${{ github.event.release.tag_name }}"
         echo "Install Channel: ${{ steps.release_type.outputs.channel }}"
         
-    - name: Download and run install script
+    - name: Download and run install script with sudo
       run: |
         wget -O install.sh https://websoft9.github.io/websoft9/install/install.sh
-        bash install.sh --channel ${{ steps.release_type.outputs.channel }}
+        sudo bash install.sh --channel ${{ steps.release_type.outputs.channel }}
         
     - name: Run CVE security scan
       run: |
