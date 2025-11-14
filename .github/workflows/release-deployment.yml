@@ -31,8 +31,9 @@ jobs:
         
     - name: Download and run install script with sudo
       run: |
+        sudo su
         wget -O install.sh https://websoft9.github.io/websoft9/install/install.sh
-        sudo bash install.sh --channel ${{ steps.release_type.outputs.channel }}
+        bash install.sh --channel ${{ steps.release_type.outputs.channel }}
         
     - name: Run CVE security scan
       run: |
