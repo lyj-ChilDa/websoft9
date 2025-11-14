@@ -212,7 +212,7 @@ scan_filesystem() {
     
     # Scan the root filesystem
     if trivy fs \
-        --timeout 600s \
+        --timeout 3600s \
         --skip-dirs "${skip_dirs}" \
         --skip-files "${skip_files}" \
         --offline-scan \
